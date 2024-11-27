@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #007bff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+form * {
+  height: 40px;
+}
+form {
+  display: flex;
+  gap: 20px;
+}
+input[type="text"] {
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  width: 75%;
+  outline: none;
+}
+form button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  font-weight: bold;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 37vh;
+  overflow-y: scroll;
+}
+.todo {
+  background: lightskyblue;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkbox * {
+  font-size: 20px;
+  text-decoration: none;
+  color: blue;
+}
+
+.btn {
+  height: 25px;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+.buttons * {
+  width: 30px;
+  font-size: 20px;
+}
+
+.danger {
+  background: #ff0000;
+  color: #fff;
+}
+.success {
+  background: #008000;
+  color: #fff;
+}
+.primary {
+  background: #007bff;
+  color: #fff;
+}
+.warning {
+  background: #fafad2;
+  color: #000;
+}
+
+.todo form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.todo form input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #007bff;
+  border-radius: 0;
+  height: 25px;
+}

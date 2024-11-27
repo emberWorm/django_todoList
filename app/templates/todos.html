@@ -1,0 +1,94 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="box">
+      <form action="/app/add_todo/" method="post">
+        {% csrf_token %}
+        <input type="text" name="todo-title" required />
+        <button class="button">
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
+      </form>
+      <div class="todos">
+        {% for todo in todos %}
+        <div class="todo">
+          <a href="/app/check_todo/{{todo.id}}" class="checkbox">
+            {% if not todo.completed %}
+            <ion-icon name="square-outline"></ion-icon>
+            {% else %}
+            <ion-icon name="checkbox-outline"></ion-icon>
+            {% endif %}
+          </a>
+          {% if action == 'edit' and todo_object.id == todo.id %}
+          <form action="/app/edit_todo/{{todo.id}}" method="post">
+            {% csrf_token %}
+            <input
+              type="text"
+              name="todo-title"
+              required
+              value="{{todo_object.title}}"
+            />
+          </form>
+          {% else %}
+          <div class="text">{{todo}}</div>
+          {% endif %}
+          
+          {% if action == 'delete' and todo.id == todo_id %}
+          <div class="buttons">
+            <a
+              class="btn danger"
+              href="/app/delete_todo/{{todo.id}}?confirm=true"
+            >
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </a>
+            <a class="btn success" href="/app/todos/">
+              <ion-icon name="close-outline"></ion-icon>
+            </a>
+          </div>
+          {% else %}
+          <div class="buttons">
+            {% if action == 'edit' and todo_object.id == todo.id %}
+            <a class="btn warning" href="/app/todos">
+              <ion-icon name="close-outline"></ion-icon>
+            </a>
+            {% else %}
+            <a class="btn warning" href="/app/edit_todo/{{todo.id}}">
+              <ion-icon name="create-outline"></ion-icon>
+            </a>
+            {% endif %}
+            
+            <a class="btn primary" href="/app/delete_todo/{{todo.id}}">
+              <ion-icon name="trash-outline"></ion-icon>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector("input[name=todo-title]").focus();
+    });
+  </script>
+</html>
